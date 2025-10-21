@@ -1,15 +1,20 @@
+import React from 'react';
 import HeroSection from './components/hero_section';
 import ServicesSection from './components/service_section';
 import StatsSection from './components/stats_section';
-import WhySection from './components/price_section';
+import PriceSection from './components/price_section';
+import Testimonials from './components/testimonial';
 
-export default function LandingPage() {
+const LandingPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-background overflow-hidden">
       <HeroSection />
       <ServicesSection />
       <StatsSection />
-      <WhySection />
+      <Testimonials />
+      <PriceSection />
     </div>
   );
-}
+};
+
+export default LandingPage;

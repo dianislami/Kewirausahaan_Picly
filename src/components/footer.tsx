@@ -1,7 +1,19 @@
+import React from 'react';
 import { Facebook, Instagram, Github, Youtube } from 'lucide-react';
 
-export default function Footer() {
-  const footerLinks = [
+interface FooterLink {
+  name: string;
+  href: string;
+}
+
+interface SocialLink {
+  icon: React.ComponentType<any>;
+  href: string;
+  label: string;
+}
+
+const Footer: React.FC = () => {
+  const footerLinks: FooterLink[] = [
     { name: 'About', href: '#about' },
     { name: 'Blog', href: '#blog' },
     { name: 'Jobs', href: '#jobs' },
@@ -10,7 +22,7 @@ export default function Footer() {
     { name: 'Partners', href: '#partners' }
   ];
 
-  const socialLinks = [
+  const socialLinks: SocialLink[] = [
     { icon: Facebook, href: '#facebook', label: 'Facebook' },
     { icon: Instagram, href: '#instagram', label: 'Instagram' },
     { icon: () => (
@@ -64,4 +76,6 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

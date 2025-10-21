@@ -1,0 +1,42 @@
+{
+  "services": [
+    {
+      "id": "01",
+      "title": "Desain Konten Sosial Media",
+      "description": "Ciptakan feed Instagram, Story, dan konten TikTok yang menarik dengan design konsisten dan sesuai brand identity Anda",
+      "features": ["Feed Instagram", "Story Template", "TikTok Content", "Reels Design"],
+      "color": "from-pink-100 to-pink-50",
+      "textColor": "text-pink-900",
+      "pinColor": "bg-pink-500",
+      "borderColor": "border-pink-200"
+    },
+    {
+      "id": "02",
+      "title": "Desain Grafis (Poster, Flyer, dll)",
+      "description": "Design profesional untuk semua kebutuhan promosi Anda, dari poster event hingga flyer bisnis dengan kualitas print-ready",
+      "features": ["Event Poster", "Business Flyer", "Menu Design", "Banner & Signage"],
+      "color": "from-purple-100 to-purple-50",
+      "textColor": "text-purple-900",
+      "pinColor": "bg-purple-500",
+      "borderColor": "border-purple-200"
+    },
+    {
+      "id": "03",
+      "title": "Video Editing",
+      "description": "Video editing profesional untuk konten promosi, company profile, hingga dokumentasi event dengan hasil yang cinematic",
+      "features": ["Promo Video", "Company Profile", "Event Coverage", "Tutorial Video"],
+      "color": "from-pink-100 to-pink-50",
+      "textColor": "text-pink-900",
+      "pinColor": "bg-pink-500",
+      "borderColor": "border-pink-200"
+    }
+  ],
+  "categories": [
+    { "id": "poster", "name": "Poster & Flyer" },
+    { "id": "feed", "name": "Feed Instagram" },
+    { "id": "reel", "name": "TikTok, Reels, Shorts" },
+    { "id": "video", "name": "Video Profesional" },
+    { "id": "bundling", "name": "Bundling" },
+    { "id": "all", "name": "All" }
+  ]
+}

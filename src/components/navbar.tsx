@@ -1,14 +1,12 @@
-'use client';
-
-import { useState } from 'react';
-import { NavLink } from 'react-router-dom'
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import logo from '../assets/logo_picly1.png';
 
-export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+const Navbar: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
-  const toggleMenu = () => {
+  const toggleMenu = (): void => {
     setIsMenuOpen(!isMenuOpen);
   };
   return (
@@ -41,6 +39,18 @@ export default function Navbar() {
             </li>
             <li>
               <NavLink 
+                to="/about" 
+                className={({ isActive }) => 
+                  isActive 
+                    ? "px-8 py-3 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold text-sm transition-all" 
+                    : "px-8 py-3 rounded-full text-gray-500 font-medium text-sm hover:bg-gray-100 transition-all"
+                }
+              >
+                Tentang Kami
+              </NavLink>
+            </li>
+            <li>
+              <NavLink 
                 to="/services" 
                 className={({ isActive }) => 
                   isActive 
@@ -50,11 +60,6 @@ export default function Navbar() {
               >
                 Layanan Kami
               </NavLink>
-            </li>
-            <li>
-              <a href="#testimonials" className="px-8 py-3 rounded-full text-gray-500 font-medium text-sm hover:bg-gray-100 transition-all">
-                Testimonial
-              </a>
             </li>
             <li>
               <a href="#contact" className="px-8 py-3 rounded-full text-gray-500 font-medium text-sm hover:bg-gray-100 transition-all">
@@ -112,6 +117,17 @@ export default function Navbar() {
                 Beranda
               </NavLink>
               <NavLink 
+                to="/about" 
+                onClick={() => setIsMenuOpen(false)}
+                className={({ isActive }) => 
+                  isActive 
+                    ? "block w-full text-left px-4 py-3 rounded-lg bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold text-sm transition-all" 
+                    : "block w-full text-left px-4 py-3 rounded-lg text-gray-600 font-medium text-sm hover:bg-gray-100 transition-all"
+                }
+              >
+                Tentang Kami
+              </NavLink>
+              <NavLink 
                 to="/services" 
                 onClick={() => setIsMenuOpen(false)}
                 className={({ isActive }) => 
@@ -122,13 +138,6 @@ export default function Navbar() {
               >
                 Layanan Kami
               </NavLink>
-              <a 
-                href="#testimonials" 
-                onClick={() => setIsMenuOpen(false)}
-                className="block w-full text-left px-4 py-3 rounded-lg text-gray-600 font-medium text-sm hover:bg-gray-100 transition-all"
-              >
-                Testimonial
-              </a>
               <a 
                 href="#contact" 
                 onClick={() => setIsMenuOpen(false)}
@@ -142,4 +151,6 @@ export default function Navbar() {
       </nav>
     </>
   );
-}
+};
+
+export default Navbar;

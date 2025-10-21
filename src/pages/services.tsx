@@ -1,4 +1,7 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import PriceSection from '../components/price_section';
+import Produk from '../data/produk.json';
+import Service from '../data/services.json';
 
 // TypeScript interfaces
 interface Product {
@@ -11,346 +14,39 @@ interface Product {
     features: string[];
 }
 
-export default function Services() {
+interface Service {
+    id: string;
+    title: string;
+    description: string;
+    features: string[];
+    color: string;
+    textColor: string;
+    pinColor: string;
+    borderColor: string;
+}
 
-    const services = [
-        {
-            id: '01',
-            title: 'Desain Konten Sosial Media',
-            description: 'Ciptakan feed Instagram, Story, dan konten TikTok yang menarik dengan design konsisten dan sesuai brand identity Anda',
-            features: ['Feed Instagram', 'Story Template', 'TikTok Content', 'Reels Design'],
-            color: 'from-pink-100 to-pink-50',
-            textColor: 'text-pink-900',
-            pinColor: 'bg-pink-500',
-            borderColor: 'border-pink-200'
-        },
-        {
-            id: '02',
-            title: 'Desain Grafis (Poster, Flyer, dll)',
-            description: 'Design profesional untuk semua kebutuhan promosi Anda, dari poster event hingga flyer bisnis dengan kualitas print-ready',
-            features: ['Event Poster', 'Business Flyer', 'Menu Design', 'Banner & Signage'],
-            color: 'from-purple-100 to-purple-50',
-            textColor: 'text-purple-900',
-            pinColor: 'bg-purple-500',
-            borderColor: 'border-purple-200'
-        },
-        {
-            id: '03',
-            title: 'Video Editing',
-            description: 'Video editing profesional untuk konten promosi, company profile, hingga dokumentasi event dengan hasil yang cinematic',
-            features: ['Promo Video', 'Company Profile', 'Event Coverage', 'Tutorial Video'],
-            color: 'from-pink-100 to-pink-50',
-            textColor: 'text-pink-900',
-            pinColor: 'bg-pink-500',
-            borderColor: 'border-pink-200'
-        }
-    ];
+interface Category {
+    id: string;
+    name: string;
+}
+
+const Services: React.FC = () => {
+    // Get data from imported JSON
+    const services: Service[] = Service.services;
+    const categories: Category[] = Service.categories;
+    const products: Record<string, Product[]> = Produk;
 
     // State untuk kategori yang dipilih
-    const [selectedCategory, setSelectedCategory] = useState('All');
-
-    // Daftar kategori
-    const categories = [
-        { id: 'all', name: 'All' },
-        { id: 'poster', name: 'Poster & Flyer' },
-        { id: 'feed', name: 'Feed Instagram' },
-        { id: 'reel', name: 'TikTok, Reels, Shorts' },
-        { id: 'video', name: 'Video Profesional' },
-        { id: 'bundling', name: 'Bundling' }
-    ];
-
-    // Data produk untuk setiap kategori (tanpa 'All' - akan digenerate dinamis)
-    const products: Record<string, Product[]> = {
-        'Poster & Flyer': [
-            {
-                id: 7,
-                title: "Event Poster Design",
-                description: "Design poster event yang eye-catching dengan layout profesional",
-                price: "Rp 75.000",
-                image: "./src/assets/produk1.jpg",
-                badge: "TRENDING",
-                features: ["A3 Size Ready", "Color Variations", "Event Info Layout"]
-            },
-            {
-                id: 8,
-                title: "Business Flyer",
-                description: "Flyer bisnis dengan design modern untuk promosi produk/service",
-                price: "Rp 60.000",
-                image: "./src/assets/produk1.jpg",
-                badge: "HOT",
-                features: ["Double Side", "Print Ready", "QR Code Integration"]
-            },
-            {
-                id: 9,
-                title: "Product Poster",
-                description: "Poster produk dengan foto styling yang menarik dan informasi lengkap",
-                price: "Rp 85.000",
-                image: "./src/assets/produk1.jpg",
-                badge: "NEW",
-                features: ["Product Photography", "Info Graphics", "Brand Consistency"]
-            },
-            {
-                id: 10,
-                title: "Restaurant Menu Design",
-                description: "Design menu restoran yang appetizing dengan layout mudah dibaca",
-                price: "Rp 120.000",
-                image: "./src/assets/produk1.jpg",
-                badge: "POPULAR",
-                features: ["Multi-page Layout", "Food Photography", "Price List"]
-            },
-            {
-                id: 11,
-                title: "Concert Poster",
-                description: "Poster konser dengan design yang bold dan energetic untuk menarik audience",
-                price: "Rp 90.000",
-                image: "./src/assets/produk1.jpg",
-                badge: "ARTISTIC",
-                features: ["Creative Typography", "Vibrant Colors", "Ticket Info"]
-            },
-            {
-                id: 12,
-                title: "Real Estate Flyer",
-                description: "Flyer properti dengan layout profesional dan foto berkualitas tinggi",
-                price: "Rp 80.000",
-                image: "./src/assets/produk1.jpg",
-                badge: "BEST SELLER",
-                features: ["Property Details", "Contact Info", "Location Map"]
-            }
-        ],
-        'Feed Instagram': [
-            {
-                id: 13,
-                title: "Carousel Post Design",
-                description: "Design carousel Instagram yang engaging dengan informasi lengkap",
-                price: "Rp 45.000",
-                image: "./src/assets/produk1.jpg",
-                badge: "POPULAR",
-                features: ["5 Slide Design", "Swipe Template", "CTA Included"]
-            },
-            {
-                id: 14,
-                title: "Quote Post Pack",
-                description: "Kumpulan design quote inspiratif untuk meningkatkan engagement",
-                price: "Rp 120.000",
-                image: "./src/assets/produk1.jpg",
-                badge: "BUNDLE",
-                features: ["10 Quote Design", "Various Styles", "Editable Text"]
-            },
-            {
-                id: 15,
-                title: "Product Showcase",
-                description: "Template showcase produk dengan layout yang clean dan modern",
-                price: "Rp 65.000",
-                image: "./src/assets/produk1.jpg",
-                badge: "BEST SELLER",
-                features: ["Product Focus", "Price Display", "Brand Elements"]
-            },
-            {
-                id: 16,
-                title: "Story Highlight Cover Set",
-                description: "Set cover untuk story highlight Instagram yang konsisten dan aesthetic",
-                price: "Rp 35.000",
-                image: "./src/assets/produk1.jpg",
-                badge: "ESSENTIAL",
-                features: ["15 Icon Designs", "Custom Icons", "Brand Colors"]
-            },
-            {
-                id: 17,
-                title: "Promo Post Template",
-                description: "Template post promosi dengan design yang attention-grabbing",
-                price: "Rp 40.000",
-                image: "./src/assets/produk1.jpg",
-                badge: "HOT DEAL",
-                features: ["Discount Banner", "CTA Button", "Urgency Elements"]
-            },
-            {
-                id: 18,
-                title: "Instagram Grid Planner",
-                description: "Paket design untuk menciptakan grid Instagram yang cohesive dan stunning",
-                price: "Rp 200.000",
-                image: "./src/assets/produk1.jpg",
-                badge: "AESTHETIC",
-                features: ["18 Post Design", "Grid Preview", "Color Harmony"]
-            }
-        ],
-        'TikTok, Reels, Shorts': [
-            {
-                id: 19,
-                title: "TikTok Trend Video",
-                description: "Video pendek mengikuti trend terbaru dengan editing profesional",
-                price: "Rp 200.000",
-                image: "./src/assets/produk1.jpg",
-                badge: "VIRAL",
-                features: ["Trend Following", "Quick Edit", "Viral Potential"]
-            },
-            {
-                id: 20,
-                title: "Product Reels",
-                description: "Instagram Reels untuk showcase produk dengan transisi smooth",
-                price: "Rp 250.000",
-                image: "./src/assets/produk1.jpg",
-                badge: "HOT",
-                features: ["Smooth Transition", "Product Focus", "Music Sync"]
-            },
-            {
-                id: 21,
-                title: "Behind Scene Content",
-                description: "Video behind the scene yang authentic untuk brand storytelling",
-                price: "Rp 180.000",
-                image: "./src/assets/produk1.jpg",
-                badge: "AUTHENTIC",
-                features: ["Natural Editing", "Story Telling", "Brand Human"]
-            },
-            {
-                id: 22,
-                title: "Tutorial Video Shorts",
-                description: "Video tutorial singkat dan jelas untuk edukasi audience Anda",
-                price: "Rp 150.000",
-                image: "./src/assets/produk1.jpg",
-                badge: "EDUCATIONAL",
-                features: ["Step by Step", "Text Overlay", "Easy to Follow"]
-            },
-            {
-                id: 23,
-                title: "Testimonial Video Reel",
-                description: "Video testimonial customer yang compelling dan build trust",
-                price: "Rp 220.000",
-                image: "./src/assets/produk1.jpg",
-                badge: "TRUSTED",
-                features: ["Customer Focus", "Subtitle", "Call to Action"]
-            },
-            {
-                id: 24,
-                title: "Dance/Trend Challenge Video",
-                description: "Video mengikuti challenge viral dengan branding yang subtle",
-                price: "Rp 175.000",
-                image: "./src/assets/produk1.jpg",
-                badge: "TRENDING",
-                features: ["Viral Challenge", "Brand Integration", "Fun Content"]
-            }
-        ],
-        'Video Profesional': [
-            {
-                id: 25,
-                title: "Company Profile Video",
-                description: "Video profil perusahaan dengan narasi profesional dan visual berkualitas",
-                price: "Rp 1.500.000",
-                image: "./src/assets/produk1.jpg",
-                badge: "PREMIUM",
-                features: ["Professional Narration", "4K Quality", "Motion Graphics"]
-            },
-            {
-                id: 26,
-                title: "Product Commercial",
-                description: "Video komersial produk dengan script dan visual yang menjual",
-                price: "Rp 2.000.000",
-                image: "./src/assets/produk1.jpg",
-                badge: "ENTERPRISE",
-                features: ["Script Writing", "Professional Talent", "Multiple Version"]
-            },
-            {
-                id: 27,
-                title: "Event Documentation",
-                description: "Dokumentasi event lengkap dengan highlight dan full coverage",
-                price: "Rp 1.200.000",
-                image: "./src/assets/produk1.jpg",
-                badge: "COMPLETE",
-                features: ["Full Coverage", "Highlight Video", "Raw Footage"]
-            },
-            {
-                id: 28,
-                title: "Explainer Video Animation",
-                description: "Video animasi explainer yang mudah dipahami untuk menjelaskan produk/layanan",
-                price: "Rp 1.800.000",
-                image: "./src/assets/produk1.jpg",
-                badge: "ANIMATED",
-                features: ["2D Animation", "Voiceover", "Script Included"]
-            },
-            {
-                id: 29,
-                title: "Corporate Interview Video",
-                description: "Video interview profesional dengan multi-camera setup dan editing cinematic",
-                price: "Rp 1.000.000",
-                image: "./src/assets/produk1.jpg",
-                badge: "PROFESSIONAL",
-                features: ["Multi-camera", "Studio Lighting", "Post Production"]
-            },
-            {
-                id: 30,
-                title: "Brand Story Documentary",
-                description: "Video dokumenter brand story yang emotional dan memorable",
-                price: "Rp 2.500.000",
-                image: "./src/assets/produk1.jpg",
-                badge: "CINEMATIC",
-                features: ["Storytelling", "Cinematic Grade", "Original Score"]
-            }
-        ],
-        'Bundling': [
-            {
-                id: 31,
-                title: "Social Media Starter Pack",
-                description: "Paket lengkap untuk memulai social media dengan semua template design",
-                price: "Rp 500.000",
-                image: "./src/assets/produk1.jpg",
-                badge: "COMPLETE PACK",
-                features: ["Logo Design", "Feed Template", "Story Template", "Poster Design"]
-            },
-            {
-                id: 32,
-                title: "Business Branding Bundle",
-                description: "Paket branding lengkap untuk business dengan semua material promosi",
-                price: "Rp 1.000.000",
-                image: "./src/assets/produk1.jpg",
-                badge: "BUSINESS PACK",
-                features: ["Logo + Brand Guidelines", "Business Card", "Letterhead", "Social Media Kit"]
-            },
-            {
-                id: 33,
-                title: "Content Creator Package",
-                description: "Paket lengkap untuk content creator dengan semua kebutuhan konten",
-                price: "Rp 750.000",
-                image: "./src/assets/produk1.jpg",
-                badge: "CREATOR PACK",
-                features: ["Monthly Content", "Video Editing", "Thumbnail Design", "Social Media Management"]
-            },
-            {
-                id: 34,
-                title: "E-Commerce Visual Bundle",
-                description: "Paket visual lengkap untuk toko online mulai dari logo hingga banner",
-                price: "Rp 650.000",
-                image: "./src/assets/produk1.jpg",
-                badge: "SHOP BUNDLE",
-                features: ["Logo + Banner", "Product Photo", "Promo Graphics", "Packaging Design"]
-            },
-            {
-                id: 35,
-                title: "Restaurant Marketing Pack",
-                description: "Paket marketing lengkap untuk restaurant dengan menu, flyer, dan social media",
-                price: "Rp 800.000",
-                image: "./src/assets/produk1.jpg",
-                badge: "FOOD & BEV",
-                features: ["Menu Design", "Social Media Posts", "Promo Flyer", "Food Photography"]
-            },
-            {
-                id: 36,
-                title: "Event Promotion Bundle",
-                description: "Paket promosi event all-in-one dari poster hingga video teaser",
-                price: "Rp 900.000",
-                image: "./src/assets/produk1.jpg",
-                badge: "EVENT PACK",
-                features: ["Event Poster", "Social Media Kit", "Video Teaser", "E-Ticket Design"]
-            }
-        ]
-    };
-
+    const [selectedCategory, setSelectedCategory] = useState('Poster & Flyer');
 
     // Filter produk berdasarkan kategori yang dipilih
     const filteredProducts: Product[] = selectedCategory === 'All' 
-        ? Object.values(products).flat() // Gabungkan semua produk dari semua kategori
+        ? Object.values(products).flat()
         : products[selectedCategory] || [];
 
     return (
         <section>
+            {/* Hero Section */}
             <div className="min-h-[80vh] flex items-center justify-center text-center px-5 relative overflow-hidden">
                 <div className="relative isolate px-6 lg:px-8 w-full">
                     <div className="mx-auto max-w-7xl py-20 sm:py-24 lg:py-32">
@@ -359,10 +55,10 @@ export default function Services() {
                             {/* Left Column - Text Content */}
                             <div className="text-left">
                                 <h1 className="text-5xl font-semibold tracking-tight text-white sm:text-7xl animate-fadeInUp" style={{ animationDelay: '0.4s' }}>
-                                    Data to enrich your online business
+                                    Dari ide sampai hasil akhir, semua bisa bareng Picly
                                 </h1>
                                 <p className="mt-8 text-lg font-medium text-gray-400 sm:text-xl animate-fadeInUp" style={{ animationDelay: '0.6s' }}>
-                                    Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat.
+                                    Kami bantu wujudkan konsep kamu jadi karya visual yang impactful dan pastinya punya gaya khas
                                 </p>
                             </div>
 
@@ -417,28 +113,28 @@ export default function Services() {
                     {/* Service Cards with Connection Lines */}
                     <div className="relative">
                         {/* Connecting Lines - Hidden on Mobile */}
-                        <svg className="absolute inset-0 w-full h-full pointer-events-none hidden lg:block" style={{ zIndex: 0 }}>
+                        <svg className="absolute inset-0 w-full h-full pointer-events-none hidden lg:block" style={{ zIndex: 0 }} viewBox="0 0 100 100" preserveAspectRatio="none">
                             <defs>
                                 <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" style={{ stopColor: '#ec4899', stopOpacity: 0.3 }} />
-                                    <stop offset="100%" style={{ stopColor: '#a855f7', stopOpacity: 0.3 }} />
+                                    <stop offset="0%" stopColor="#ec4899" stopOpacity={0.3} />
+                                    <stop offset="100%" stopColor="#a855f7" stopOpacity={0.3} />
                                 </linearGradient>
                             </defs>
                             {/* Line from Card 1 to Card 2 */}
                             <path
-                                d="M 33% 35% Q 50% 35%, 67% 35%"
+                                d="M 33 35 Q 50 35 67 35"
                                 stroke="url(#lineGradient)"
-                                strokeWidth="2"
+                                strokeWidth="0.5"
                                 fill="none"
-                                strokeDasharray="8,8"
+                                strokeDasharray="2,2"
                             />
                             {/* Line from Card 2 to Card 3 */}
                             <path
-                                d="M 67% 65% Q 50% 65%, 33% 65%"
+                                d="M 67 65 Q 50 65 33 65"
                                 stroke="url(#lineGradient)"
-                                strokeWidth="2"
+                                strokeWidth="0.5"
                                 fill="none"
-                                strokeDasharray="8,8"
+                                strokeDasharray="2,2"
                             />
                         </svg>
 
@@ -511,6 +207,9 @@ export default function Services() {
                     </div>
                 </div>
             </div>
+
+            {/* Divider */}
+            <div className="w-full h-px bg-gradient-to-r from-transparent via-white/30 to-transparent m-6"></div>
 
             {/* produk section */}
             <div className="relative z-10 w-full px-6 lg:px-8 py-8 my-10">
@@ -623,6 +322,11 @@ export default function Services() {
                     )}
                 </div>
             </div>
+
+            {/* Price Section */}
+            <PriceSection />
         </section>
-    )
-}
+    );
+};
+
+export default Services;

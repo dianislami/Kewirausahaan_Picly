@@ -1,9 +1,6 @@
-'use client';
-
 import React from 'react';
 
-
-export default function ServicesSection() {
+const ServicesSection: React.FC = () => {
   return (
     <section id="services" className="py-20 px-[5%] mx-auto relative z-5 bg-gradient-to-b from-purple-500/5 to-transparent">
       <div className="mx-auto max-w-2xl lg:max-w-7xl">
@@ -78,4 +75,6 @@ export default function ServicesSection() {
       </div>
     </section>
   );
-}
+};
+
+export default ServicesSection;
