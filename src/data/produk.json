@@ -5,7 +5,7 @@
       "title": "Event Poster Design",
       "description": "Design poster event yang eye-catching dengan layout profesional",
       "price": "Rp 75.000",
-      "image": "/src/assets/poster/poster1.jpeg",
+      "image": "/assets/poster/poster1.jpeg",
       "badge": "TRENDING",
       "features": ["A3 Size Ready", "Color Variations", "Event Info Layout"]
     },
@@ -14,7 +14,7 @@
       "title": "Business Flyer",
       "description": "Flyer bisnis dengan design modern untuk promosi produk/service",
       "price": "Rp 60.000",
-      "image": "/src/assets/poster/poster2.jpeg",
+      "image": "/assets/poster/poster2.jpeg",
       "badge": "HOT",
       "features": ["Double Side", "Print Ready", "QR Code Integration"]
     },
@@ -23,7 +23,7 @@
       "title": "Product Poster",
       "description": "Poster produk dengan foto styling yang menarik dan informasi lengkap",
       "price": "Rp 85.000",
-      "image": "/src/assets/poster/poster3.jpeg",
+      "image": "/assets/poster/poster3.jpeg",
       "badge": "NEW",
       "features": ["Product Photography", "Info Graphics", "Brand Consistency"]
     },
@@ -32,7 +32,7 @@
       "title": "Restaurant Menu Design",
       "description": "Design menu restoran yang appetizing dengan layout mudah dibaca",
       "price": "Rp 120.000",
-      "image": "/src/assets/poster/poster4.jpeg",
+      "image": "/assets/poster/poster4.jpeg",
       "badge": "POPULAR",
       "features": ["Multi-page Layout", "Food Photography", "Price List"]
     },
@@ -41,7 +41,7 @@
       "title": "Concert Poster",
       "description": "Poster konser dengan design yang bold dan energetic untuk menarik audience",
       "price": "Rp 90.000",
-      "image": "/src/assets/poster/poster5.jpeg",
+      "image": "/assets/poster/poster5.jpeg",
       "badge": "ARTISTIC",
       "features": ["Creative Typography", "Vibrant Colors", "Ticket Info"]
     },
@@ -50,7 +50,7 @@
       "title": "Real Estate Flyer",
       "description": "Flyer properti dengan layout profesional dan foto berkualitas tinggi",
       "price": "Rp 80.000",
-      "image": "/src/assets/poster/poster6.jpeg",
+      "image": "/assets/poster/poster6.jpeg",
       "badge": "BEST SELLER",
       "features": ["Property Details", "Contact Info", "Location Map"]
     }
@@ -61,7 +61,7 @@
       "title": "Carousel Post Design",
       "description": "Design carousel Instagram yang engaging dengan informasi lengkap",
       "price": "Rp 45.000",
-      "image": "/src/assets/feed/feed1.jpeg",
+      "image": "/assets/feed/feed1.jpeg",
       "badge": "POPULAR",
       "features": ["5 Slide Design", "Swipe Template", "CTA Included"]
     },
@@ -70,7 +70,7 @@
       "title": "Quote Post Pack",
       "description": "Kumpulan design quote inspiratif untuk meningkatkan engagement",
       "price": "Rp 120.000",
-      "image": "/src/assets/feed/feed2.jpeg",
+      "image": "/assets/feed/feed2.jpeg",
       "badge": "BUNDLE",
       "features": ["10 Quote Design", "Various Styles", "Editable Text"]
     },
@@ -79,7 +79,7 @@
       "title": "Product Showcase",
       "description": "Template showcase produk dengan layout yang clean dan modern",
       "price": "Rp 65.000",
-      "image": "/src/assets/feed/feed3.jpeg",
+      "image": "/assets/feed/feed3.jpeg",
       "badge": "BEST SELLER",
       "features": ["Product Focus", "Price Display", "Brand Elements"]
     },
@@ -88,7 +88,7 @@
       "title": "Story Highlight Cover Set",
       "description": "Set cover untuk story highlight Instagram yang konsisten dan aesthetic",
       "price": "Rp 35.000",
-      "image": "/src/assets/feed/feed4.jpeg",
+      "image": "/assets/feed/feed4.jpeg",
       "badge": "ESSENTIAL",
       "features": ["15 Icon Designs", "Custom Icons", "Brand Colors"]
     },
@@ -97,7 +97,7 @@
       "title": "Promo Post Template",
       "description": "Template post promosi dengan design yang attention-grabbing",
       "price": "Rp 40.000",
-      "image": "/src/assets/feed/feed5.jpeg",
+      "image": "/assets/feed/feed5.jpeg",
       "badge": "HOT DEAL",
       "features": ["Discount Banner", "CTA Button", "Urgency Elements"]
     },
@@ -106,7 +106,7 @@
       "title": "Instagram Grid Planner",
       "description": "Paket design untuk menciptakan grid Instagram yang cohesive dan stunning",
       "price": "Rp 200.000",
-      "image": "/src/assets/feed/feed6.jpeg",
+      "image": "/assets/feed/feed6.jpeg",
       "badge": "AESTHETIC",
       "features": ["18 Post Design", "Grid Preview", "Color Harmony"]
     }
@@ -117,7 +117,7 @@
       "title": "TikTok Trend Video",
       "description": "Video pendek mengikuti trend terbaru dengan editing profesional",
       "price": "Rp 200.000",
-      "image": "/src/assets/reels/reel1.png",
+      "image": "/assets/reels/reel1.png",
       "badge": "VIRAL",
       "features": ["Trend Following", "Quick Edit", "Viral Potential"]
     },
@@ -126,7 +126,7 @@
       "title": "Product Reels",
       "description": "Instagram Reels untuk showcase produk dengan transisi smooth",
       "price": "Rp 250.000",
-      "image": "/src/assets/reels/reel2.png",
+      "image": "/assets/reels/reel2.png",
       "badge": "HOT",
       "features": ["Smooth Transition", "Product Focus", "Music Sync"]
     },
@@ -135,7 +135,7 @@
       "title": "Behind Scene Content",
       "description": "Video behind the scene yang authentic untuk brand storytelling",
       "price": "Rp 180.000",
-      "image": "/src/assets/reels/reel3.png",
+      "image": "/assets/reels/reel3.png",
       "badge": "AUTHENTIC",
       "features": ["Natural Editing", "Story Telling", "Brand Human"]
     },
@@ -144,7 +144,7 @@
       "title": "Tutorial Video Shorts",
       "description": "Video tutorial singkat dan jelas untuk edukasi audience Anda",
       "price": "Rp 150.000",
-      "image": "/src/assets/reels/reel4.png",
+      "image": "/assets/reels/reel4.png",
       "badge": "EDUCATIONAL",
       "features": ["Step by Step", "Text Overlay", "Easy to Follow"]
     },
@@ -153,7 +153,7 @@
       "title": "Testimonial Video Reel",
       "description": "Video testimonial customer yang compelling dan build trust",
       "price": "Rp 220.000",
-      "image": "/src/assets/reels/reel5.png",
+      "image": "/assets/reels/reel5.png",
       "badge": "TRUSTED",
       "features": ["Customer Focus", "Subtitle", "Call to Action"]
     },
@@ -162,7 +162,7 @@
       "title": "Dance/Trend Challenge Video",
       "description": "Video mengikuti challenge viral dengan branding yang subtle",
       "price": "Rp 175.000",
-      "image": "/src/assets/reels/reel6.jpeg",
+      "image": "/assets/reels/reel6.jpeg",
       "badge": "TRENDING",
       "features": ["Viral Challenge", "Brand Integration", "Fun Content"]
     }
@@ -173,7 +173,7 @@
       "title": "Company Profile Video",
       "description": "Video profil perusahaan dengan narasi profesional dan visual berkualitas",
       "price": "Rp 1.500.000",
-      "image": "/src/assets/video/video1.jpeg",
+      "image": "/assets/video/video1.jpeg",
       "badge": "PREMIUM",
       "features": ["Professional Narration", "4K Quality", "Motion Graphics"]
     },
@@ -182,7 +182,7 @@
       "title": "Product Commercial",
       "description": "Video komersial produk dengan script dan visual yang menjual",
       "price": "Rp 2.000.000",
-      "image": "/src/assets/video/video2.png",
+      "image": "/assets/video/video2.png",
       "badge": "ENTERPRISE",
       "features": ["Script Writing", "Professional Talent", "Multiple Version"]
     },
@@ -191,7 +191,7 @@
       "title": "Event Documentation",
       "description": "Dokumentasi event lengkap dengan highlight dan full coverage",
       "price": "Rp 1.200.000",
-      "image": "/src/assets/video/video3.png",
+      "image": "/assets/video/video3.png",
       "badge": "COMPLETE",
       "features": ["Full Coverage", "Highlight Video", "Raw Footage"]
     },
@@ -200,7 +200,7 @@
       "title": "Explainer Video Animation",
       "description": "Video animasi explainer yang mudah dipahami untuk menjelaskan produk/layanan",
       "price": "Rp 1.800.000",
-      "image": "/src/assets/video/video4.jpeg",
+      "image": "/assets/video/video4.jpeg",
       "badge": "ANIMATED",
       "features": ["2D Animation", "Voiceover", "Script Included"]
     },
@@ -209,7 +209,7 @@
       "title": "Corporate Interview Video",
       "description": "Video interview profesional dengan multi-camera setup dan editing cinematic",
       "price": "Rp 1.000.000",
-      "image": "/src/assets/video/video5.png",
+      "image": "/assets/video/video5.png",
       "badge": "PROFESSIONAL",
       "features": ["Multi-camera", "Studio Lighting", "Post Production"]
     },
@@ -218,7 +218,7 @@
       "title": "Brand Story Documentary",
       "description": "Video dokumenter brand story yang emotional dan memorable",
       "price": "Rp 2.500.000",
-      "image": "/src/assets/video/video6.png",
+      "image": "/assets/video/video6.png",
       "badge": "CINEMATIC",
       "features": ["Storytelling", "Cinematic Grade", "Original Score"]
     }
@@ -229,7 +229,7 @@
       "title": "Social Media Starter Pack",
       "description": "Paket lengkap untuk memulai social media dengan semua template design",
       "price": "Rp 500.000",
-      "image": "/src/assets/bundling/bundle1.jpeg",
+      "image": "/assets/bundling/bundle1.jpeg",
       "badge": "COMPLETE PACK",
       "features": ["Logo Design", "Feed Template", "Story Template", "Poster Design"]
     },
@@ -238,7 +238,7 @@
       "title": "Business Branding Bundle",
       "description": "Paket branding lengkap untuk business dengan semua material promosi",
       "price": "Rp 1.000.000",
-      "image": "/src/assets/bundling/bundle2.jpeg",
+      "image": "/assets/bundling/bundle2.jpeg",
       "badge": "BUSINESS PACK",
       "features": ["Logo + Brand Guidelines", "Business Card", "Letterhead", "Social Media Kit"]
     },
@@ -247,7 +247,7 @@
       "title": "Content Creator Package",
       "description": "Paket lengkap untuk content creator dengan semua kebutuhan konten",
       "price": "Rp 750.000",
-      "image": "/src/assets/bundling/bundle3.jpeg",
+      "image": "/assets/bundling/bundle3.jpeg",
       "badge": "CREATOR PACK",
       "features": ["Monthly Content", "Video Editing", "Thumbnail Design", "Social Media Management"]
     },
@@ -256,7 +256,7 @@
       "title": "E-Commerce Visual Bundle",
       "description": "Paket visual lengkap untuk toko online mulai dari logo hingga banner",
       "price": "Rp 650.000",
-      "image": "/src/assets/bundling/bundle4.jpeg",
+      "image": "/assets/bundling/bundle4.jpeg",
       "badge": "SHOP BUNDLE",
       "features": ["Logo + Banner", "Product Photo", "Promo Graphics", "Packaging Design"]
     },
@@ -265,7 +265,7 @@
       "title": "Restaurant Marketing Pack",
       "description": "Paket marketing lengkap untuk restaurant dengan menu, flyer, dan social media",
       "price": "Rp 800.000",
-      "image": "/src/assets/bundling/bundle5.jpeg",
+      "image": "/assets/bundling/bundle5.jpeg",
       "badge": "FOOD & BEV",
       "features": ["Menu Design", "Social Media Posts", "Promo Flyer", "Food Photography"]
     },
@@ -274,7 +274,7 @@
       "title": "Event Promotion Bundle",
       "description": "Paket promosi event all-in-one dari poster hingga video teaser",
       "price": "Rp 900.000",
-      "image": "/src/assets/bundling/bundle6.jpeg",
+      "image": "/assets/bundling/bundle6.jpeg",
       "badge": "EVENT PACK",
       "features": ["Event Poster", "Social Media Kit", "Video Teaser", "E-Ticket Design"]
     }

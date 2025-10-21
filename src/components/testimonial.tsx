@@ -18,7 +18,7 @@ const Testimonials: React.FC = () => {
             name: 'Sarah Johnson',
             position: 'Marketing Director',
             company: 'Tech Startup Inc',
-            image: './src/assets/avatar1.jpg',
+            image: '/assets/avatar1.jpg',
             testimonial: 'Picly telah mengubah cara kami berkomunikasi dengan audience. Design yang mereka buat tidak hanya eye-catching, tapi juga sangat efektif meningkatkan engagement kami hingga 300%!',
             rating: 5
         },
@@ -27,7 +27,7 @@ const Testimonials: React.FC = () => {
             name: 'David Pratama',
             position: 'Business Owner',
             company: 'Culinary Paradise',
-            image: './src/assets/avatar2.jpg',
+            image: '/assets/avatar2.jpg',
             testimonial: 'Dari logo, menu design, sampai konten social media semuanya dikerjakan dengan sangat profesional. Tim Picly benar-benar memahami kebutuhan bisnis F&B kami!',
             rating: 5
         },
@@ -36,7 +36,7 @@ const Testimonials: React.FC = () => {
             name: 'Emily Carter',
             position: 'Content Creator',
             company: 'Beauty Influencer',
-            image: './src/assets/avatar3.jpg',
+            image: '/assets/avatar3.jpg',
             testimonial: 'Video editing dan content design dari Picly membuat konten saya lebih profesional dan aesthetic. Engagement meningkat drastis sejak bekerjasama dengan mereka!',
             rating: 5
         }

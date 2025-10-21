@@ -109,7 +109,7 @@ const AboutUsPage: React.FC = () => {
                             <div className="relative backdrop-blur-xl rounded-3xl p-2 hidden md:block">
                                 <div>
                                     <img 
-                                        src="/src/assets/services.png" 
+                                        src="/assets/services.png" 
                                         alt="Hero Image" 
                                         className="w-150 h-auto object-cover"
                                         />
