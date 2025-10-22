@@ -307,7 +307,7 @@ const Services: React.FC = () => {
                     </div>
 
                     {/* Category Navigation */}
-                    <div className={`flex justify-center mb-12 transition-all duration-1000 delay-200 ${
+                    <div className={`flex justify-center mb-12 relative z-40 transition-all duration-1000 delay-200 ${
                         showProducts ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                     }`}>
                         {/* Desktop Pills - Hidden on mobile */}
@@ -333,7 +333,7 @@ const Services: React.FC = () => {
                         </div>
 
                         {/* Mobile Dropdown - Visible only on mobile */}
-                        <div className="block md:hidden relative w-full max-w-xl">
+                        <div className="block md:hidden relative w-full max-w-xl z-50">
                             <button
                                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                                 className="w-full backdrop-blur-md bg-slate-800/90 shadow-xl border border-white/10 px-6 py-3 flex items-center justify-between text-white font-medium"
@@ -348,7 +348,7 @@ const Services: React.FC = () => {
 
                             {/* Dropdown Menu */}
                             {isDropdownOpen && (
-                                <div className="absolute top-full left-0 right-0 mt-2 backdrop-blur-md bg-slate-800/90 rounded-xl shadow-xl border border-white/10 z-10">
+                                <div className="absolute top-full left-0 right-0 mt-2 backdrop-blur-md bg-slate-800/90 rounded-xl shadow-xl border border-white/10 z-50">
                                     <ul className="py-2">
                                         {categories.map((category) => (
                                             <li key={category.id}>
