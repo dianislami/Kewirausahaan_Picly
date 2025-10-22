@@ -43,7 +43,7 @@ const ServicesSection: React.FC = () => {
               </div>
               <div className="@container relative min-h-120 w-full grow max-lg:mx-auto max-lg:max-w-sm">
                 <div className="absolute inset-x-10 top-10 bottom-0 overflow-hidden rounded-t-[12cqw] border-x-[3cqw] border-t-[3cqw] border-gray-700 bg-gray-900 outline outline-white/20">
-                  <img src="https://tailwindcss.com/plus-assets/img/component-images/bento-03-mobile-friendly.png" alt="" className="size-full object-cover object-top hover:scale-105 transition-transform duration-500" />
+                  <img src="assets/phone.jpg" alt="" className="size-full object-cover object-top hover:scale-105 transition-transform duration-500" />
                 </div>
               </div>
             </div>

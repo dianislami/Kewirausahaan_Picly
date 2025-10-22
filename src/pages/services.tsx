@@ -426,7 +426,7 @@ const Services: React.FC = () => {
                                                 <span className="text-gray-400 text-sm ml-1">/item</span>
                                             </div>
                                             <button className="backdrop-blur-md bg-gradient-to-r from-purple-500/80 to-pink-500/80 hover:from-purple-600 hover:to-pink-600 text-white px-6 py-2 rounded-full font-medium transition-all duration-300 border border-white/20">
-                                                Order Now
+                                                Pesan Sekarang
                                             </button>
                                         </div>
                                     </div>
