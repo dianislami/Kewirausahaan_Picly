@@ -27,10 +27,63 @@ const AboutUsPage: React.FC = () => {
     const stats: StatItem[] = AbouUsData.stats;
     const missions: string[] = AbouUsData.missions;
 
-    // State for counting animation
+    // State for animations
     const [isVisible, setIsVisible] = useState<boolean>(false);
     const [animatedValues, setAnimatedValues] = useState<number[]>([0, 0, 0, 0]);
+    const [showHero, setShowHero] = useState<boolean>(false);
+    const [showBenefits, setShowBenefits] = useState<boolean>(false);
+    const [showVisionMission, setShowVisionMission] = useState<boolean>(false);
+    const [showTeam, setShowTeam] = useState<boolean>(false);
+    
     const sectionRef = useRef<HTMLElement>(null);
+    const heroRef = useRef<HTMLDivElement>(null);
+    const benefitsRef = useRef<HTMLDivElement>(null);
+    const visionRef = useRef<HTMLDivElement>(null);
+    const teamRef = useRef<HTMLDivElement>(null);
+
+    // Scroll to top when component mounts
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        // Trigger hero animation after scroll
+        setTimeout(() => setShowHero(true), 300);
+    }, []);
+
+    // Intersection Observer for scroll-triggered animations
+    useEffect(() => {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '-10% 0px -10% 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    if (entry.target === benefitsRef.current) {
+                        setShowBenefits(true);
+                    } else if (entry.target === visionRef.current) {
+                        setShowVisionMission(true);
+                    } else if (entry.target === teamRef.current) {
+                        setShowTeam(true);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        const refs = [benefitsRef, visionRef, teamRef];
+        refs.forEach(ref => {
+            if (ref.current) {
+                observer.observe(ref.current);
+            }
+        });
+
+        return () => {
+            refs.forEach(ref => {
+                if (ref.current) {
+                    observer.unobserve(ref.current);
+                }
+            });
+        };
+    }, []);
 
     // Benefit icons mapping
     const benefitIcons = [
@@ -100,13 +153,15 @@ const AboutUsPage: React.FC = () => {
         <div className="min-h-screen">
 
             {/* Hero Section */}
-            <div className="min-h-[80vh] flex items-center justify-center text-center px-5 relative overflow-hidden">
+            <div ref={heroRef} className="min-h-[80vh] flex items-center justify-center text-center px-5 relative overflow-hidden">
                 <div className="relative isolate px-6 lg:px-8 w-full">
                     <div className="mx-auto max-w-7xl py-20 sm:py-24 lg:py-32">
                         {/* Two Column Grid Layout */}
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                             {/* Right Column - Text Content */}
-                            <div className="relative backdrop-blur-xl rounded-3xl p-2 hidden md:block">
+                            <div className={`relative backdrop-blur-xl rounded-3xl p-2 hidden md:block transition-all duration-1000 ${
+                                showHero ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+                            }`}>
                                 <div>
                                     <img 
                                         src="/assets/about.png" 
@@ -122,10 +177,14 @@ const AboutUsPage: React.FC = () => {
 
                             {/* Left Column - Image */}
                             <div className="text-right">
-                                <h1 className="text-5xl font-semibold tracking-tight text-white sm:text-7xl animate-fadeInUp" style={{ animationDelay: '0.4s' }}>
+                                <h1 className={`text-5xl font-semibold tracking-tight text-white sm:text-7xl transition-all duration-1000 delay-200 ${
+                                    showHero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                                }`}>
                                     Kami adalah partner kreatif untuk brand kamu
                                 </h1>
-                                <p className="mt-8 text-lg font-medium text-gray-400 sm:text-xl animate-fadeInUp" style={{ animationDelay: '0.6s' }}>
+                                <p className={`mt-8 text-lg font-medium text-gray-400 sm:text-xl transition-all duration-1000 delay-300 ${
+                                    showHero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                                }`}>
                                     Kami bukan sekadar tim editing. Bersama Picly, kamu dapat hasil visual berkualitas dan pengalaman kolaborasi yang profesional serta kreatif
                                 </p>
                             </div>
@@ -140,11 +199,13 @@ const AboutUsPage: React.FC = () => {
             </div>
 
             {/* Section 1: Tentang Kami & Keuntungan */}
-            <section className="relative py-24 px-6 lg:px-8">
+            <section ref={benefitsRef} className="relative py-24 px-6 lg:px-8">
                 <div className="mx-auto max-w-7xl">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                         {/* Left Side - Content */}
-                        <div>
+                        <div className={`transition-all duration-1000 ${
+                            showBenefits ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+                        }`}>
                             <h2 className="text-lg font-semibold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent mb-2">
                                 Tentang Kami
                             </h2>
@@ -164,7 +225,9 @@ const AboutUsPage: React.FC = () => {
                             {/* Benefits List */}
                             <div className="space-y-6">
                                 {benefits.map((benefit, index) => (
-                                    <div key={index} className="flex items-start gap-4">
+                                    <div key={index} className={`flex items-start gap-4 transition-all duration-1000 delay-${(index + 2) * 100} ${
+                                        showBenefits ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+                                    }`}>
                                         {/* Icon Circle */}
                                         <div className="flex-shrink-0">
                                             <div className="w-16 h-16 rounded-full bg-gradient-to-br from-pink-500 to-purple-500 flex items-center justify-center text-white shadow-lg">
@@ -187,12 +250,12 @@ const AboutUsPage: React.FC = () => {
                         </div>
 
                         {/* Right Side - Illustration */}
-                        <div className="relative">
-                            <div className="backdrop-blur-xl bg-white/5 rounded-3xl p-8 border border-white/10">
-                                {/* Placeholder for 3D Illustration */}
-                                <div className="aspect-square rounded-2xl flex items-center justify-center">
-                                    <img src="/assets/about1.png" alt="Vision and Mission Illustration" className="w-full h-auto" />
-                                </div>
+                        <div className={`relative transition-all duration-1000 delay-300 ${
+                            showBenefits ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
+                        }`}>
+                            {/* Placeholder for 3D Illustration */}
+                            <div className="aspect-square rounded-2xl flex items-center justify-center">
+                                <img src="/assets/about1.png" alt="Vision and Mission Illustration" className="w-full h-auto" />
                             </div>
 
                             {/* Decorative Elements */}
@@ -207,16 +270,16 @@ const AboutUsPage: React.FC = () => {
             <div className="w-full h-px bg-gradient-to-r from-transparent via-white/30 to-transparent m-6"></div>
 
             {/* Section 2: Visi & Misi */}
-            <section className="relative py-15 px-6 lg:px-8">
+            <section ref={visionRef} className="relative py-15 px-6 lg:px-8">
                 <div className="mx-auto max-w-7xl">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                         {/* Left Side - Illustration */}
-                        <div className="relative order-2 lg:order-1">
-                            <div className="backdrop-blur-xl bg-white/5 rounded-3xl p-8 border border-white/10">
-                                {/* Placeholder for 3D Illustration */}
-                                <div className="aspect-square rounded-2xl flex items-center justify-center">
-                                    <img src="/assets/about2.png" alt="Vision and Mission Illustration" className="w-full h-auto" />
-                                </div>
+                        <div className={`relative order-2 lg:order-1 transition-all duration-1000 ${
+                            showVisionMission ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+                        }`}>
+                            {/* Placeholder for 3D Illustration */}
+                            <div className="aspect-square rounded-2xl flex items-center justify-center">
+                                <img src="/assets/about2.png" alt="Vision and Mission Illustration" className="w-full h-auto" />
                             </div>
 
                             {/* Decorative Elements */}
@@ -225,7 +288,9 @@ const AboutUsPage: React.FC = () => {
                         </div>
 
                         {/* Right Side - Content */}
-                        <div className="order-1 lg:order-2">
+                        <div className={`order-1 lg:order-2 transition-all duration-1000 delay-200 ${
+                            showVisionMission ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
+                        }`}>
                             <h2 className="text-lg font-semibold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent mb-2">
                                 Visi & Misi
                             </h2>
@@ -248,7 +313,9 @@ const AboutUsPage: React.FC = () => {
                                 
                                 <div className="space-y-6">
                                     {missions.map((mission, index) => (
-                                        <div key={index} className="flex items-center gap-4">
+                                        <div key={index} className={`flex items-center gap-4 transition-all duration-1000 delay-${(index + 3) * 100} ${
+                                            showVisionMission ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+                                        }`}>
                                             {/* Bullet Circle with Number */}
                                             <div className="flex-shrink-0">
                                                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pink-500 to-purple-500 flex items-center justify-center text-white font-bold text-lg shadow-lg">
@@ -299,13 +366,17 @@ const AboutUsPage: React.FC = () => {
                     </div>
                 </div>
             </section>
-
+            
+            {/* Divider */}
+            <div className="w-full h-px bg-gradient-to-r from-transparent via-white/30 to-transparent m-6"></div>
 
             {/* Section 3: Tim Profesional Kami */}
-            <section className="relative py-15 px-6 lg:px-8">
+            <section ref={teamRef} className="relative py-15 px-6 lg:px-8">
                 <div className="mx-auto max-w-7xl">
                     {/* Header */}
-                    <div className="mb-16 text-center">
+                    <div className={`mb-16 text-center transition-all duration-1000 ${
+                        showTeam ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                    }`}>
                         <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
                             Tim Profesional Kami
                         </h1>
@@ -329,7 +400,9 @@ const AboutUsPage: React.FC = () => {
                         {teamMembers.map((member, index) => (
                             <div 
                                 key={member.id}
-                                className="group relative"
+                                className={`group relative transition-all duration-1000 delay-${(index + 2) * 200} ${
+                                    showTeam ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                                }`}
                                 style={{ animationDelay: `${index * 0.2}s` }}
                             >
                                 {/* Card */}

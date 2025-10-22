@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 interface Testimonial {
     id: number;
@@ -11,6 +11,26 @@ interface Testimonial {
 }
 
 const Testimonials: React.FC = () => {
+    const [isVisible, setIsVisible] = useState<boolean>(false);
+    const sectionRef = useRef<HTMLElement>(null);
+
+    // Intersection Observer untuk mendeteksi ketika section masuk viewport
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting && !isVisible) {
+                    setIsVisible(true);
+                }
+            },
+            { threshold: 0.2 } // Trigger ketika 20% dari section terlihat
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, [isVisible]);
 
     const testimonials: Testimonial[] = [
         {
@@ -43,19 +63,18 @@ const Testimonials: React.FC = () => {
     ];
 
     return (
-        <section>
+        <section ref={sectionRef}>
 
             {/* Divider */}
-            <div className="w-full h-px bg-gradient-to-r from-transparent via-white/30 to-transparent m-6"></div>
+            <div className={`w-full h-px bg-gradient-to-r from-transparent via-white/30 to-transparent m-6 transition-opacity duration-800 ${isVisible ? 'opacity-100' : 'opacity-0'}`}></div>
 
             {/* Testimonials Section */}
             <div className="min-h-screen relative py-20 px-6 lg:px-8 overflow-hidden">
                 
                 {/* Animated Gradient Blobs */}
                 <div aria-hidden="true" className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden">
-                    <div className="absolute top-30 left-20 w-70 h-70 bg-gradient-to-br from-pink-500 to-purple-500 rounded-full blur-3xl opacity-30 animate-pulse"></div>
-                    <div className="absolute top-50 right-20 w-80 h-80 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full blur-3xl opacity-30 animate-pulse" style={{ animationDelay: '1s' }}></div>
-                    <div className="absolute bottom-25 left-1/2 w-45 h-45 bg-gradient-to-br from-pink-600 to-purple-600 rounded-full blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '2s' }}></div>
+                    <div className="absolute top-30 left-20 w-50 h-50 bg-gradient-to-br from-pink-500 to-purple-500 rounded-full blur-3xl opacity-30 animate-pulse"></div>
+                    <div className="absolute top-70 right-20 w-30 h-30 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full blur-3xl opacity-30 animate-pulse" style={{ animationDelay: '1s' }}></div>
                 </div>
 
                 {/* Grid Pattern Overlay */}
@@ -73,23 +92,30 @@ const Testimonials: React.FC = () => {
                 <div className="mx-auto max-w-7xl">
                     {/* Header Section */}
                     <div className="text-center mb-20">
-                        <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 animate-fadeInUp">
-                            What People Say
+                        <h1 className={`text-5xl md:text-6xl font-bold text-white mb-6 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                            Apa Kata Klien Kami
                         </h1>
-                        <p className="text-xl text-gray-300 max-w-3xl mx-auto animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
-                            Discover what our satisfied customers have to say about their experiences with our products/services.
+                        <p className={`text-xl text-gray-300 max-w-3xl mx-auto transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                            Kepuasan mereka menjadi bukti komitmen kami dalam menghadirkan karya visual yang menarik dan bermakna
                         </p>
                     </div>
 
                     {/* Testimonial Cards Container */}
                     <div className="relative max-w-6xl mx-auto">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-                            {testimonials.map((testimonial) => {
+                            {testimonials.map((testimonial, index) => {
 
                                 return (
                                     <div
                                         key={testimonial.id}
-                                        className="relative rounded-3xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/50 h-[450px]"
+                                        className={`relative rounded-3xl transition-all duration-700 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/50 h-[450px] ${
+                                            isVisible 
+                                                ? 'opacity-100 translate-y-0' 
+                                                : 'opacity-0 translate-y-12'
+                                        }`}
+                                        style={{ 
+                                            transitionDelay: `${50 + index * 100}ms`
+                                        }}
                                     >
                                         {/* Glassmorphism Card */}
                                         <div className="relative backdrop-blur-xl bg-slate-800/40 rounded-3xl p-8 border border-slate-700/50 shadow-2xl hover:border-purple-500 h-full flex flex-col">
@@ -159,7 +185,7 @@ const Testimonials: React.FC = () => {
             </div>
 
             {/* Divider */}
-            <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent m-6"></div>
+            <div className={`w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent m-6 transition-opacity duration-1000 delay-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}></div>
         </section>
     );
 };

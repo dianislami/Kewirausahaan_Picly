@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ChevronDown } from 'lucide-react';
 import PriceSection from '../components/price_section';
 import Produk from '../data/produk.json';
@@ -43,10 +43,73 @@ const Services: React.FC = () => {
     // State untuk toggle dropdown di mobile
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+    // Animation states
+    const [showHero, setShowHero] = useState<boolean>(false);
+    const [showServices, setShowServices] = useState<boolean>(false);
+    const [showProducts, setShowProducts] = useState<boolean>(false);
+    const [showPricing, setShowPricing] = useState<boolean>(false);
+
+    // Refs for sections
+    const servicesRef = useRef<HTMLDivElement>(null);
+    const productsRef = useRef<HTMLDivElement>(null);
+    const pricingRef = useRef<HTMLDivElement>(null);
+
     // Filter produk berdasarkan kategori yang dipilih
     const filteredProducts: Product[] = selectedCategory === 'All' 
         ? Object.values(products).flat()
         : products[selectedCategory] || [];
+
+    // Function to scroll to katalog section
+    const scrollToKatalog = () => {
+        const katalogElement = document.querySelector('.katalog');
+        if (katalogElement) {
+            katalogElement.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
+    // Scroll to top when component mounts
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        // Trigger hero animation after scroll
+        setTimeout(() => setShowHero(true), 300);
+    }, []);
+
+    // Intersection Observer for scroll-triggered animations
+    useEffect(() => {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '-10% 0px -10% 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    if (entry.target === servicesRef.current) {
+                        setShowServices(true);
+                    } else if (entry.target === productsRef.current) {
+                        setShowProducts(true);
+                    } else if (entry.target === pricingRef.current) {
+                        setShowPricing(true);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        const refs = [servicesRef, productsRef, pricingRef];
+        refs.forEach(ref => {
+            if (ref.current) {
+                observer.observe(ref.current);
+            }
+        });
+
+        return () => {
+            refs.forEach(ref => {
+                if (ref.current) {
+                    observer.unobserve(ref.current);
+                }
+            });
+        };
+    }, []);
 
     return (
         <section>
@@ -58,16 +121,22 @@ const Services: React.FC = () => {
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                             {/* Left Column - Text Content */}
                             <div className="text-left">
-                                <h1 className="text-5xl font-semibold tracking-tight text-white sm:text-7xl animate-fadeInUp" style={{ animationDelay: '0.4s' }}>
+                                <h1 className={`text-5xl font-semibold tracking-tight text-white sm:text-7xl transition-all duration-1000 ${
+                                    showHero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                                }`}>
                                     Dari ide sampai hasil akhir, semua bisa bareng Picly
                                 </h1>
-                                <p className="mt-8 text-lg font-medium text-gray-400 sm:text-xl animate-fadeInUp" style={{ animationDelay: '0.6s' }}>
+                                <p className={`mt-8 text-lg font-medium text-gray-400 sm:text-xl transition-all duration-1000 delay-200 ${
+                                    showHero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                                }`}>
                                     Kami bantu wujudkan konsep kamu jadi karya visual yang impactful dan pastinya punya gaya khas
                                 </p>
                             </div>
 
                             {/* Right Column - Image */}
-                            <div className="relative backdrop-blur-xl rounded-3xl p-2 hidden md:block">
+                            <div className={`relative backdrop-blur-xl rounded-3xl p-2 hidden md:block transition-all duration-1000 delay-300 ${
+                                showHero ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
+                            }`}>
                                 <div>
                                     <img 
                                         src="/assets/services.png" 
@@ -94,7 +163,7 @@ const Services: React.FC = () => {
             </div>
 
             {/* Services section */}
-            <div className="relative py-20 px-6 lg:px-8 overflow-hidden">
+            <div ref={servicesRef} className="relative py-20 px-6 lg:px-8 overflow-hidden">
                 {/* Background Gradient */}
                 <div aria-hidden="true" className="absolute top-20 left-10 -z-10 transform-gpu overflow-hidden blur-3xl">
                     <div className="relative w-96 h-96 rounded-full bg-gradient-to-br from-purple-600/20 to-pink-600/20 blur-3xl"></div>
@@ -105,7 +174,9 @@ const Services: React.FC = () => {
 
                 <div className="mx-auto max-w-7xl">
                     {/* Section Header */}
-                    <div className="text-center mb-20">
+                    <div className={`text-center mb-20 transition-all duration-1000 ${
+                        showServices ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                    }`}>
                         <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
                             Layanan Kami
                         </h2>
@@ -149,7 +220,9 @@ const Services: React.FC = () => {
                                     key={service.id}
                                     className={`relative group ${
                                         index === 1 ? 'lg:mt-24' : ''
-                                    } ${index === 2 ? 'lg:mt-48' : ''}`}
+                                    } ${index === 2 ? 'lg:mt-48' : ''} transition-all duration-1000 delay-${(index + 2) * 200} ${
+                                        showServices ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                                    }`}
                                     style={{ 
                                         animationDelay: `${index * 0.2}s`,
                                         zIndex: 10 
@@ -199,7 +272,10 @@ const Services: React.FC = () => {
 
                                             {/* Hover Button */}
                                             <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                                <button className="w-full bg-gradient-to-r from-pink-500 to-purple-500 text-white py-2 px-4 rounded-lg font-medium text-sm hover:shadow-lg hover:shadow-pink-500/50 transition-all">
+                                                <button 
+                                                    onClick={scrollToKatalog}
+                                                    className="w-full bg-gradient-to-r from-pink-500 to-purple-500 text-white py-2 px-4 rounded-lg font-medium text-sm hover:shadow-lg hover:shadow-pink-500/50 transition-all"
+                                                >
                                                     Lihat Detail
                                                 </button>
                                             </div>
@@ -216,10 +292,12 @@ const Services: React.FC = () => {
             <div className="w-full h-px bg-gradient-to-r from-transparent via-white/30 to-transparent m-6"></div>
 
             {/* produk section */}
-            <div className="relative z-10 w-full px-6 lg:px-8 py-8 my-10">
+            <div ref={productsRef} className="katalog relative z-10 w-full px-6 lg:px-8 pt-8 pb-23 my-10">
                 <div className="mx-auto max-w-7xl">
                     {/* Section Header */}
-                    <div className="text-center mb-16">
+                    <div className={`text-center mb-16 transition-all duration-1000 ${
+                        showProducts ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                    }`}>
                         <h2 className="text-4xl font-bold text-white mb-4">
                             Katalog Produk Kami
                         </h2>
@@ -229,7 +307,9 @@ const Services: React.FC = () => {
                     </div>
 
                     {/* Category Navigation */}
-                    <div className="flex justify-center mb-12">
+                    <div className={`flex justify-center mb-12 transition-all duration-1000 delay-200 ${
+                        showProducts ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                    }`}>
                         {/* Desktop Pills - Hidden on mobile */}
                         <div className="hidden md:block backdrop-blur-xl bg-white/10 rounded-full shadow-xl border-[0.5px] border border-white/10 p-2">
                             <ul className="flex items-center gap-5">
@@ -297,8 +377,10 @@ const Services: React.FC = () => {
 
                     {/* Product Cards Grid - Dynamic */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-                        {filteredProducts.map((product) => (
-                            <div key={product.id} className="group relative backdrop-blur-xl rounded-2xl p-1 transition-all duration-300 hover:scale-105">
+                        {filteredProducts.map((product, index) => (
+                            <div key={product.id} className={`group relative backdrop-blur-xl rounded-2xl p-1 transition-all duration-800 hover:scale-105 delay-${(index + 3) * 100} ${
+                                showProducts ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                            }`}>
                                 {/* Gradient Border */} 
                                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-500/50 via-pink-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
                                 
@@ -370,8 +452,15 @@ const Services: React.FC = () => {
                 </div>
             </div>
 
+            {/* Divider */}
+            <div className="w-full h-px bg-gradient-to-r from-transparent via-white/30 to-transparent m-6"></div>
+
             {/* Price Section */}
-            <PriceSection />
+            <div ref={pricingRef} className={`transition-all duration-1000 ${
+                showPricing ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}>
+                <PriceSection />
+            </div>
         </section>
     );
 };

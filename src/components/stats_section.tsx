@@ -11,30 +11,30 @@ interface StatItem {
 const StatsSection: React.FC = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [animatedValues, setAnimatedValues] = useState<number[]>([0, 0, 0, 0]);
+  const [showContent, setShowContent] = useState<boolean>(false);
   const sectionRef = useRef<HTMLElement>(null);
 
   const stats: StatItem[] = [
     {
-      value: 8000,
+      value: 50,
       suffix: "+",
-      label: "Creators on the platform"
+      label: "Proyek desain terselesaikan"
+    },
+    {
+      value: 95,
+      suffix: "%",
+      label: "Klien puas dengan hasil"
+    },
+    {
+      value: 99,
+      suffix: "%",
+      label: "Jaminan kualitas layanan"
     },
     {
       value: 3,
-      suffix: "%",
-      label: "Flat platform fee"
-    },
-    {
-      value: 99.9,
-      suffix: "%",
-      decimal: 1,
-      label: "Uptime guarantee"
-    },
-    {
-      value: 70,
-      prefix: "$",
-      suffix: "M",
-      label: "Paid out to creators"
+      prefix: "Rp",
+      suffix: "Jt",
+      label: "Total pendapatan kreator"
     }
   ];
 
@@ -44,6 +44,8 @@ const StatsSection: React.FC = () => {
       ([entry]) => {
         if (entry.isIntersecting && !isVisible) {
           setIsVisible(true);
+          // Trigger content animation dengan delay
+          setTimeout(() => setShowContent(true), 300);
         }
       },
       { threshold: 0.3 }
@@ -56,7 +58,7 @@ const StatsSection: React.FC = () => {
     return () => observer.disconnect();
   }, [isVisible]);
 
-  // Counter animation
+  // Counter animation - dimulai setelah scroll ke section
   useEffect(() => {
     if (!isVisible) return;
 
@@ -64,26 +66,29 @@ const StatsSection: React.FC = () => {
     const steps = 60; // 60 frame untuk smooth animation
     const stepDuration = duration / steps;
 
-    stats.forEach((stat, index) => {
-      let currentStep = 0;
-      
-      const timer = setInterval(() => {
-        currentStep++;
-        const progress = currentStep / steps;
-        const easedProgress = 1 - Math.pow(1 - progress, 3); // Easing function
-        const currentValue = stat.value * easedProgress;
+    // Delay counting animation sedikit setelah content muncul
+    setTimeout(() => {
+      stats.forEach((stat, index) => {
+        let currentStep = 0;
+        
+        const timer = setInterval(() => {
+          currentStep++;
+          const progress = currentStep / steps;
+          const easedProgress = 1 - Math.pow(1 - progress, 3); // Easing function
+          const currentValue = stat.value * easedProgress;
 
-        setAnimatedValues(prev => {
-          const newValues = [...prev];
-          newValues[index] = currentValue;
-          return newValues;
-        });
+          setAnimatedValues(prev => {
+            const newValues = [...prev];
+            newValues[index] = currentValue;
+            return newValues;
+          });
 
-        if (currentStep >= steps) {
-          clearInterval(timer);
-        }
-      }, stepDuration);
-    });
+          if (currentStep >= steps) {
+            clearInterval(timer);
+          }
+        }, stepDuration);
+      });
+    }, 600); // Delay 600ms agar content muncul dulu baru counting
   }, [isVisible]);
 
   // Format nilai untuk display
@@ -99,16 +104,16 @@ const StatsSection: React.FC = () => {
     <section ref={sectionRef} className="py-24 px-[5%]">
 
       {/* Divider */}
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-white/30 to-transparent mb-25"></div>
+      <div className={`w-full h-px bg-gradient-to-r from-transparent via-white/30 to-transparent mb-25 transition-opacity duration-800 ${showContent ? 'opacity-100' : 'opacity-0'}`}></div>
 
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-            Trusted by creators worldwide
+          <h2 className={`text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 transition-all duration-1000 ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            Dipercaya oleh Klien dari Mahasiswa & Pelaku UMKM
           </h2>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Lorem ipsum dolor sit amet consect adipisicing possimus.
+          <p className={`text-lg text-gray-400 max-w-2xl mx-auto transition-all duration-1000 delay-200 ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            Kami telah membantu berbagai klien menciptakan konten visual yang menarik dan profesional untuk kebutuhan promosi
           </p>
         </div>
 
@@ -117,12 +122,20 @@ const StatsSection: React.FC = () => {
           {stats.map((stat, index) => (
             <div 
               key={index}
-              className="bg-slate-800/40 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 text-center hover:border-purple-500/50 transition-all duration-300 hover:bg-slate-800/60"
+              className={`bg-slate-800/40 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 text-center hover:border-purple-500/50 transition-all duration-300 hover:bg-slate-800/60 hover:scale-105 ${
+                showContent 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-8'
+              }`}
+              style={{ 
+                transitionDelay: `${400 + index * 100}ms`,
+                transitionDuration: '800ms'
+              }}
             >
-              <div className="text-4xl md:text-5xl font-bold text-white mb-3">
+              <div className="text-4xl md:text-5xl font-bold text-white mb-3 transition-colors duration-300 group-hover:text-purple-400">
                 {formatValue(animatedValues[index], stat)}
               </div>
-              <div className="text-gray-400 text-base">
+              <div className="text-gray-400 text-base transition-colors duration-300 group-hover:text-gray-300">
                 {stat.label}
               </div>
             </div>

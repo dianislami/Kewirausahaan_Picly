@@ -3,16 +3,16 @@
     {
       "id": 1,
       "name": "Dian Islami",
-      "position": "Creative Director",
+      "position": "Desainer Visual",
       "image": "/assets/dian.jpg",
-      "description": "Saya percaya setiap karya harus punya cerita. Sebagai Creative Director, saya berfokus pada detail, konsep, dan kualitas agar setiap proyek bisa memancarkan nilai dan profesionalisme. Mari ciptakan visual yang tak hanya indah, tetapi juga bermakna."
+      "description": "Bertanggung jawab dalam pembuatan desain poster, konten media sosial, banner, dan elemen visual lainnya menggunakan Figma dan Canva. Fokus pada pengembangan konsep visual yang menarik, konsisten, dan sesuai kebutuhan klien. Memastikan setiap hasil desain mencerminkan identitas Picly dan meningkatkan daya tarik promosi bagi mahasiswa maupun pelaku UMKM"
     },
     {
       "id": 2,
       "name": "Zalvia Inasya Zulna",
-      "position": "Motion Graphic Designer",
+      "position": "Konten dan Pemasaran Digital",
       "image": "/assets/nasya.jpg",
-      "description": "Animasi bukan sekadar gerakan, tapi jiwa dari sebuah cerita. Dengan pengalaman di bidang motion graphic, saya menambahkan sentuhan sinematik yang mampu membuat karya lebih hidup."
+      "description": "Berperan dalam perencanaan dan pengelolaan strategi promosi digital melalui platform seperti TikTok dan WhatsApp. Mengatur alur komunikasi dengan klien mulai dari konsultasi ide, revisi, hingga publikasi hasil akhir. Zalvia juga memastikan setiap konten memiliki nilai promosi yang efektif, menarik, serta sesuai dengan target pasar utama Picly yaitu mahasiswa dan pelaku UMKM"
     }
   ],
   "benefits": [
@@ -31,24 +31,24 @@
   ],
   "stats": [
     {
-      "value": 450,
+      "value": 87,
       "suffix": "+",
       "label": "Total Klien"
     },
     {
-      "value": 89,
+      "value": 95,
       "suffix": "%",
       "label": "Klien Puas"
     },
     {
-      "value": 12,
+      "value": 1,
       "suffix": "+",
       "label": "Tahun Beroperasi"
     },
     {
-      "value": 40,
+      "value": 30,
       "suffix": "+",
-      "label": "Negara yang Didukung"
+      "label": "UMKM yang Didukung"
     }
   ],
   "company": {

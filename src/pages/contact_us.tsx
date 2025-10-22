@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import type { FormEvent } from 'react';
 import contactData from '../data/contact.json';
 
@@ -33,9 +33,64 @@ const ContactUsPage: React.FC = () => {
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
     const [submitStatus, setSubmitStatus] = useState<string>('');
 
+    // Animation states
+    const [showHero, setShowHero] = useState<boolean>(false);
+    const [showContact, setShowContact] = useState<boolean>(false);
+    const [showFAQ, setShowFAQ] = useState<boolean>(false);
+    const [showMap, setShowMap] = useState<boolean>(false);
+
+    // Refs for sections
+    const contactRef = useRef<HTMLElement>(null);
+    const faqRef = useRef<HTMLElement>(null);
+    const mapRef = useRef<HTMLElement>(null);
+
     const faqs: FAQ[] = contactData.faqs;
     const contactInfo = contactData.contactInfo;
     const socialMediaData: SocialMedia[] = contactData.socialMedia;
+
+    // Scroll to top when component mounts
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        // Trigger hero animation after scroll
+        setTimeout(() => setShowHero(true), 300);
+    }, []);
+
+    // Intersection Observer for scroll-triggered animations
+    useEffect(() => {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '-10% 0px -10% 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    if (entry.target === contactRef.current) {
+                        setShowContact(true);
+                    } else if (entry.target === faqRef.current) {
+                        setShowFAQ(true);
+                    } else if (entry.target === mapRef.current) {
+                        setShowMap(true);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        const refs = [contactRef, faqRef, mapRef];
+        refs.forEach(ref => {
+            if (ref.current) {
+                observer.observe(ref.current);
+            }
+        });
+
+        return () => {
+            refs.forEach(ref => {
+                if (ref.current) {
+                    observer.unobserve(ref.current);
+                }
+            });
+        };
+    }, []);
 
     // Handle form input change
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -103,10 +158,18 @@ const ContactUsPage: React.FC = () => {
 
                 <div className="mx-auto max-w-2xl py-32 sm:py-36 lg:py-48">
                     <div className="text-center">
-                        <h1 className="text-5xl font-semibold tracking-tight text-balance text-white sm:text-7xl animate-fadeInUp" style={{ animationDelay: '0.4s' }}>Let's Talk About</h1>
-                        <h1 className="text-5xl font-semibold tracking-tight text-balance text-purple-500 sm:text-7xl animate-fadeInUp" style={{ animationDelay: '0.4s' }}>Your Project</h1>
-                        <p className="mt-8 text-lg font-medium text-pretty text-gray-400 sm:text-xl/8 animate-fadeInUp" style={{ animationDelay: '0.6s' }}>Ada ide kreatif yang ingin diwujudkan? Mari diskusikan project Anda bersama tim profesional kami</p>
-                        <div className="mt-10 flex items-center justify-center gap-x-6 animate-fadeInUp" style={{ animationDelay: '0.8s' }}>
+                        <h1 className={`text-5xl font-semibold tracking-tight text-balance text-white sm:text-7xl transition-all duration-1000 ${
+                            showHero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                        }`}>Let's Talk About</h1>
+                        <h1 className={`text-5xl font-semibold tracking-tight text-balance text-purple-500 sm:text-7xl transition-all duration-1000 delay-200 ${
+                            showHero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                        }`}>Your Project</h1>
+                        <p className={`mt-8 text-lg font-medium text-pretty text-gray-400 sm:text-xl/8 transition-all duration-1000 delay-300 ${
+                            showHero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                        }`}>Ada ide kreatif yang ingin diwujudkan? Mari diskusikan project Anda bersama tim profesional kami</p>
+                        <div className={`mt-10 flex items-center justify-center gap-x-6 transition-all duration-1000 delay-400 ${
+                            showHero ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                        }`}>
                         </div>
                     </div>
                 </div>
@@ -118,11 +181,13 @@ const ContactUsPage: React.FC = () => {
             </section>
 
             {/* Get In Touch Section */}
-            <section className="relative py-16 px-6 lg:px-8">
+            <section ref={contactRef} className="relative pt-25 pb-16 px-6 lg:px-8">
                 <div className="mx-auto max-w-7xl">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                         {/* Left Side - Contact Info */}
-                        <div>
+                        <div className={`transition-all duration-1000 ${
+                            showContact ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+                        }`}>
                             <div className="mb-8">
                                 <span className="text-lg font-semibold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent mb-2 block">
                                     • CONTACT
@@ -135,7 +200,9 @@ const ContactUsPage: React.FC = () => {
                             {/* Contact Details */}
                             <div className="space-y-6 mb-8">
                                 {/* Email */}
-                                <div className="flex items-center gap-4 group cursor-pointer">
+                                <div className={`flex items-center gap-4 group cursor-pointer transition-all duration-1000 delay-200 ${
+                                    showContact ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+                                }`}>
                                     <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pink-500 to-purple-500 flex items-center justify-center flex-shrink-0">
                                         <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
@@ -150,7 +217,9 @@ const ContactUsPage: React.FC = () => {
                                 </div>
 
                                 {/* Phone */}
-                                <div className="flex items-center gap-4 group cursor-pointer">
+                                <div className={`flex items-center gap-4 group cursor-pointer transition-all duration-1000 delay-300 ${
+                                    showContact ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+                                }`}>
                                     <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pink-500 to-purple-500 flex items-center justify-center flex-shrink-0">
                                         <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
@@ -165,7 +234,9 @@ const ContactUsPage: React.FC = () => {
                                 </div>
 
                                 {/* Address */}
-                                <div className="flex items-center gap-4">
+                                <div className={`flex items-center gap-4 transition-all duration-1000 delay-400 ${
+                                    showContact ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+                                }`}>
                                     <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pink-500 to-purple-500 flex items-center justify-center flex-shrink-0">
                                         <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
@@ -182,7 +253,9 @@ const ContactUsPage: React.FC = () => {
                             </div>
 
                             {/* Social Media Links */}
-                            <div>
+                            <div className={`transition-all duration-1000 delay-500 ${
+                                showContact ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+                            }`}>
                                 <p className="text-gray-400 text-sm mb-4">Follow Us</p>
                                 <div className="flex gap-4">
                                     {socialMediaData.map((social, index) => (
@@ -202,7 +275,9 @@ const ContactUsPage: React.FC = () => {
                         </div>
 
                         {/* Right Side - Contact Form */}
-                        <div>
+                        <div className={`transition-all duration-1000 delay-300 ${
+                            showContact ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
+                        }`}>
                             <div className="backdrop-blur-xl bg-slate-800/40 rounded-2xl p-8 border border-slate-700/50">
                                 <h4 className="text-2xl font-bold text-white mb-6">Send Message</h4>
                                 
@@ -300,9 +375,11 @@ const ContactUsPage: React.FC = () => {
             <div className="w-full h-px bg-gradient-to-r from-transparent via-white/30 to-transparent my-12"></div>
 
             {/* FAQ Section */}
-            <section className="relative py-16 px-6 lg:px-8">
+            <section ref={faqRef} className="relative py-16 px-6 lg:px-8">
                 <div className="mx-auto max-w-4xl">
-                    <div className="text-center mb-12">
+                    <div className={`text-center mb-12 transition-all duration-1000 ${
+                        showFAQ ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                    }`}>
                         <span className="text-lg font-semibold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent mb-2 block">
                             • FAQ
                         </span>
@@ -316,10 +393,12 @@ const ContactUsPage: React.FC = () => {
 
                     {/* FAQ Accordion */}   
                     <div className="space-y-4">
-                        {faqs.map((faq) => (
+                        {faqs.map((faq, index) => (
                             <div
                                 key={faq.id}
-                                className="backdrop-blur-xl bg-slate-800/40 rounded-xl border border-slate-700/50 overflow-hidden transition-all duration-300">
+                                className={`backdrop-blur-xl bg-slate-800/40 rounded-xl border border-slate-700/50 overflow-hidden transition-all duration-1000 delay-${(index + 2) * 100} ${
+                                    showFAQ ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+                                }`}>
                                 <button
                                     onClick={() => toggleFAQ(faq.id)}
                                     className="faq-button w-full px-6 py-5 flex items-center justify-between text-left"
@@ -358,9 +437,11 @@ const ContactUsPage: React.FC = () => {
             <div className="w-full h-px bg-gradient-to-r from-transparent via-white/30 to-transparent my-12"></div>
 
             {/* Map Section */}
-            <section className="relative py-16 px-6 lg:px-8">
+            <section ref={mapRef} className="relative py-16 px-6 lg:px-8">
                 <div className="mx-auto max-w-7xl">
-                    <div className="text-center mb-12">
+                    <div className={`text-center mb-12 transition-all duration-1000 ${
+                        showMap ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                    }`}>
                         <h3 className="text-4xl md:text-5xl font-bold text-white mb-4">
                             Our Location
                         </h3>
@@ -370,7 +451,9 @@ const ContactUsPage: React.FC = () => {
                     </div>
 
                     {/* Google Maps Embed */}
-                    <div className="backdrop-blur-xl bg-slate-800/40 rounded-2xl p-4 border border-slate-700/50 overflow-hidden">
+                    <div className={`backdrop-blur-xl bg-slate-800/40 rounded-2xl p-4 border border-slate-700/50 overflow-hidden transition-all duration-1000 delay-200 ${
+                        showMap ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                    }`}>
                         <div className="relative w-full h-96 rounded-xl overflow-hidden">
                             <iframe
                                 src={contactInfo.mapEmbed}
@@ -387,7 +470,9 @@ const ContactUsPage: React.FC = () => {
                     </div>
 
                     {/* Quick Contact CTA */}
-                    <div className="mt-12 text-center">
+                    <div className={`mt-12 text-center transition-all duration-1000 delay-400 ${
+                        showMap ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                    }`}>
                         <p className="text-gray-300 mb-6 text-lg">
                             Butuh bantuan segera? Hubungi kami via WhatsApp
                         </p>
