@@ -109,9 +109,9 @@ const AboutUsPage: React.FC = () => {
                             <div className="relative backdrop-blur-xl rounded-3xl p-2 hidden md:block">
                                 <div>
                                     <img 
-                                        src="/assets/services.png" 
+                                        src="/assets/about.png" 
                                         alt="Hero Image" 
-                                        className="w-150 h-auto object-cover"
+                                        className="w-150 h-auto object-cover scale-x-[-1]"
                                         />
                                 </div>
                                 
@@ -149,7 +149,7 @@ const AboutUsPage: React.FC = () => {
                                 Tentang Kami
                             </h2>
                             <h3 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                                CV Picly Studio
+                                Picly Studio
                             </h3>
                             <p className="text-gray-300 text-lg leading-relaxed mb-8">
                                 Picly Creative Studio adalah layanan desain kreatif yang membantu mahasiswa dan pelaku UMKM membuat konten visual menarik seperti poster, feed Instagram, dan video promosi.
@@ -190,14 +190,8 @@ const AboutUsPage: React.FC = () => {
                         <div className="relative">
                             <div className="backdrop-blur-xl bg-white/5 rounded-3xl p-8 border border-white/10">
                                 {/* Placeholder for 3D Illustration */}
-                                <div className="aspect-square bg-gradient-to-br from-purple-600/20 to-pink-600/20 rounded-2xl flex items-center justify-center">
-                                    <div className="text-center">
-                                        <svg className="w-48 h-48 mx-auto text-purple-400/50" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
-                                            <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd"/>
-                                        </svg>
-                                        <p className="text-gray-400 mt-4">3D Illustration Placeholder</p>
-                                    </div>
+                                <div className="aspect-square rounded-2xl flex items-center justify-center">
+                                    <img src="/assets/about1.png" alt="Vision and Mission Illustration" className="w-full h-auto" />
                                 </div>
                             </div>
 
@@ -220,13 +214,8 @@ const AboutUsPage: React.FC = () => {
                         <div className="relative order-2 lg:order-1">
                             <div className="backdrop-blur-xl bg-white/5 rounded-3xl p-8 border border-white/10">
                                 {/* Placeholder for 3D Illustration */}
-                                <div className="aspect-square bg-gradient-to-br from-purple-600/20 to-pink-600/20 rounded-2xl flex items-center justify-center">
-                                    <div className="text-center">
-                                        <svg className="w-48 h-48 mx-auto text-purple-400/50" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"/>
-                                        </svg>
-                                        <p className="text-gray-400 mt-4">3D Illustration Placeholder</p>
-                                    </div>
+                                <div className="aspect-square rounded-2xl flex items-center justify-center">
+                                    <img src="/assets/about2.png" alt="Vision and Mission Illustration" className="w-full h-auto" />
                                 </div>
                             </div>
 

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import logo from '/assets/logo_picly1.png';
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -16,7 +15,7 @@ const Navbar: React.FC = () => {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center gap-2 pl-4">
-            <img src={logo} alt="Picly logo" className='h-8 w-auto'/>
+            <img src="/assets/logo_picly.png" alt="Picly logo" className='h-8 w-auto'/>
             <div className="text-xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
               Picly
             </div>
@@ -62,9 +61,16 @@ const Navbar: React.FC = () => {
               </NavLink>
             </li>
             <li>
-              <a href="#contact" className="px-8 py-3 rounded-full text-gray-500 font-medium text-sm hover:bg-gray-100 transition-all">
+              <NavLink 
+                to="/contactUs" 
+                className={({ isActive }) => 
+                  isActive 
+                    ? "px-8 py-3 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold text-sm transition-all" 
+                    : "px-8 py-3 rounded-full text-gray-500 font-medium text-sm hover:bg-gray-100 transition-all"
+                }
+              >
                 Kontak Kami
-              </a>
+              </NavLink>
             </li>
           </ul>
 
@@ -80,7 +86,7 @@ const Navbar: React.FC = () => {
         <div className="flex justify-between items-center px-4 py-3">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <img src={logo} alt="Picly logo" className='h-8 w-auto'/>
+            <img src="/assets/logo_picly.png" alt="Picly logo" className='h-8 w-auto'/>
             <div className="text-xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
               Picly
             </div>
@@ -138,13 +144,17 @@ const Navbar: React.FC = () => {
               >
                 Layanan Kami
               </NavLink>
-              <a 
-                href="#contact" 
+              <NavLink 
+                to="/contactUs" 
                 onClick={() => setIsMenuOpen(false)}
-                className="block w-full text-left px-4 py-3 rounded-lg text-gray-600 font-medium text-sm hover:bg-gray-100 transition-all"
+                className={({ isActive }) => 
+                  isActive 
+                    ? "block w-full text-left px-4 py-3 rounded-lg bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold text-sm transition-all" 
+                    : "block w-full text-left px-4 py-3 rounded-lg text-gray-600 font-medium text-sm hover:bg-gray-100 transition-all"
+                }
               >
                 Kontak Kami
-              </a>
+              </NavLink>
             </div>
           </div>
         )}

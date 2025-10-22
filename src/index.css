@@ -104,7 +104,6 @@ button {
   font-size: var(--btn-font-size);
   font-weight: var(--btn-font-weight);
   font-family: inherit;
-  background-color: var(--btn-bg);
   color: var(--text-color);
   cursor: pointer;
   transition: border-color 0.25s, background-color 0.15s;

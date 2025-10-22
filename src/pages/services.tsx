@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ChevronDown } from 'lucide-react';
 import PriceSection from '../components/price_section';
 import Produk from '../data/produk.json';
 import Service from '../data/services.json';
@@ -38,6 +39,9 @@ const Services: React.FC = () => {
 
     // State untuk kategori yang dipilih
     const [selectedCategory, setSelectedCategory] = useState('Poster & Flyer');
+    
+    // State untuk toggle dropdown di mobile
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     // Filter produk berdasarkan kategori yang dipilih
     const filteredProducts: Product[] = selectedCategory === 'All' 
@@ -224,9 +228,10 @@ const Services: React.FC = () => {
                         </p>
                     </div>
 
-                    {/* Category Pills Navigation */}
+                    {/* Category Navigation */}
                     <div className="flex justify-center mb-12">
-                        <div className="backdrop-blur-xl bg-white/10 rounded-full shadow-xl border-[0.5px] border border-white/10 p-2">
+                        {/* Desktop Pills - Hidden on mobile */}
+                        <div className="hidden md:block backdrop-blur-xl bg-white/10 rounded-full shadow-xl border-[0.5px] border border-white/10 p-2">
                             <ul className="flex items-center gap-5">
                                 {categories.map((category) => (
                                     <li key={category.id}>
@@ -245,6 +250,48 @@ const Services: React.FC = () => {
                                     </li>
                                 ))}
                             </ul>
+                        </div>
+
+                        {/* Mobile Dropdown - Visible only on mobile */}
+                        <div className="block md:hidden relative w-full max-w-xl">
+                            <button
+                                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                                className="w-full backdrop-blur-md bg-slate-800/90 shadow-xl border border-white/10 px-6 py-3 flex items-center justify-between text-white font-medium"
+                            >
+                                <span>{selectedCategory}</span>
+                                <ChevronDown 
+                                    className={`w-5 h-5 transition-transform duration-200 ${
+                                        isDropdownOpen ? 'rotate-180' : ''
+                                    }`}
+                                />
+                            </button>
+
+                            {/* Dropdown Menu */}
+                            {isDropdownOpen && (
+                                <div className="absolute top-full left-0 right-0 mt-2 backdrop-blur-md bg-slate-800/90 rounded-xl shadow-xl border border-white/10 z-10">
+                                    <ul className="py-2">
+                                        {categories.map((category) => (
+                                            <li key={category.id}>
+                                                <button
+                                                    onClick={() => {
+                                                        setSelectedCategory(category.name);
+                                                        setIsDropdownOpen(false);
+                                                    }}
+                                                    className={`
+                                                        w-full text-left px-6 py-3 font-medium text-sm transition-all duration-200
+                                                        ${selectedCategory === category.name 
+                                                            ? 'bg-gradient-to-r from-pink-500/20 to-purple-500/20 text-white border-l-4 border-pink-500' 
+                                                            : 'text-gray-300 hover:bg-white/10 hover:text-white'
+                                                        }
+                                                    `}
+                                                >
+                                                    {category.name}
+                                                </button>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
                         </div>
                     </div>
 
