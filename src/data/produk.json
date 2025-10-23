@@ -144,7 +144,7 @@
       "title": "Tutorial Video Shorts",
       "description": "Video tutorial singkat dan jelas untuk edukasi audience Anda",
       "price": "Rp 95.000",
-      "image": "/assets/reels/reel4.png",
+      "image": "/assets/reels/reel4.jpeg",
       "badge": "EDUCATIONAL",
       "features": ["Step by Step", "Text Overlay", "Easy to Follow"]
     },
@@ -162,7 +162,7 @@
       "title": "Dance/Trend Challenge Video",
       "description": "Video mengikuti challenge viral dengan branding yang subtle",
       "price": "Rp 80.000",
-      "image": "/assets/reels/reel6.jpeg",
+      "image": "/assets/reels/reel6.png",
       "badge": "TRENDING",
       "features": ["Viral Challenge", "Brand Integration", "Fun Content"]
     }
@@ -173,7 +173,7 @@
       "title": "Company Profile Video",
       "description": "Video profil perusahaan dengan narasi profesional dan visual berkualitas",
       "price": "Rp 170.000",
-      "image": "/assets/video/video1.jpeg",
+      "image": "/assets/video/video1.png",
       "badge": "PREMIUM",
       "features": ["Professional Narration", "4K Quality", "Motion Graphics"]
     },
@@ -191,7 +191,7 @@
       "title": "Event Documentation",
       "description": "Dokumentasi event lengkap dengan highlight dan full coverage",
       "price": "Rp 120.000",
-      "image": "/assets/video/video3.png",
+      "image": "/assets/video/video3.jpeg",
       "badge": "COMPLETE",
       "features": ["Full Coverage", "Highlight Video", "Raw Footage"]
     },
@@ -200,7 +200,7 @@
       "title": "Explainer Video Animation",
       "description": "Video animasi explainer yang mudah dipahami untuk menjelaskan produk/layanan",
       "price": "Rp 150.000",
-      "image": "/assets/video/video4.jpeg",
+      "image": "/assets/video/video4.png",
       "badge": "ANIMATED",
       "features": ["2D Animation", "Voiceover", "Script Included"]
     },
@@ -218,7 +218,7 @@
       "title": "Brand Story Documentary",
       "description": "Video dokumenter brand story yang emotional dan memorable",
       "price": "Rp 125.000",
-      "image": "/assets/video/video6.png",
+      "image": "/assets/video/video6.jpeg",
       "badge": "CINEMATIC",
       "features": ["Storytelling", "Cinematic Grade", "Original Score"]
     }
